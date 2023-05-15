@@ -66,6 +66,9 @@ else()
     add_subdirectory(tests)
 endif()
 
+include_directories(rapidjson)
+
+
 # include(CTest)
 # enable_testing()
 

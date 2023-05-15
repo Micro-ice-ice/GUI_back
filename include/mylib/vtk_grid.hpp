@@ -57,6 +57,11 @@ int VtkGrid::FromFile(string filename)
 
         string dataset_keyword; // keyword DATASET
         newfile >> dataset_keyword;
+        if (dataset_keyword != "DATASET")
+        {
+            cerr << "wrong file format" << endl;
+            return 3;
+        }
 
         newfile >> Dataset; // DATASET, expamle: UNSTRUCTURED_GRID
 
@@ -93,7 +98,7 @@ int VtkGrid::FromFile(string filename)
 
             if (Format == -1)
             {
-
+                cerr << "wrong file format" << endl;
                 return 3;
             }
         }
@@ -101,7 +106,15 @@ int VtkGrid::FromFile(string filename)
         string points_keyword;
         newfile >> points_keyword;
 
-        newfile >> Nodes_count;
+        try
+        {
+            newfile >> Nodes_count;
+        }
+        catch (const std::exception &e)
+        {
+            cerr << "wrong file format" << endl;
+            return 3;
+        }
 
         string nodes_type;
         newfile >> nodes_type;

@@ -11,7 +11,6 @@ public:
     vector<int> Indecies;
 
     int type;
-
     Cell(/* args */)
     {
     }
